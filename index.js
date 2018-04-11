@@ -16,3 +16,17 @@ const monologueLines = [
   'No.',
   'I am the one who knocks!'
 ];
+let totalBatteries = batteryBatches.reduce((acc, curr) => acc + curr);
+let wordCount = monologueLines.map(el => el.split(" ").length);
+let freqCount = [];
+let wordCountMap = monologueLines.reduce((acc, cur, i, arr) => {
+  let count = 0;
+  for (let i = 0; i < monologueLines.length; i++) {
+    if (cur.split(" ").length === wordCount[i]) {
+      count++;
+    }
+  }
+  freqCount.push(count);
+  acc = Object.assign({}, acc, {[wordCount[i]]:freqCount[i]});
+  return acc;
+}, {});
